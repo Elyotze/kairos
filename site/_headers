@@ -16,10 +16,10 @@
   Cache-Control: public, max-age=604800
 
 /assets/css/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/js/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Les adresses de prévisualisation *.pages.dev ne doivent pas être indexées
 https://:project.pages.dev/*
