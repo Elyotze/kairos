@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kairos.elliotpostel.com/sitemap.xml

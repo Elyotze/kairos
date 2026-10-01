@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Démo interactive · Kairos</title>
+<meta name="description" content="Démo Kairos : déclenchez un aléa (absence, non-conformité, kit en retard) et regardez le planning d&#x27;une ligne d&#x27;assemblage se recalculer dans votre navigateur. Données fictives.">
+<meta name="author" content="Elliot Postel">
+<link rel="canonical" href="https://kairos.elliotpostel.com/demo/">
+<meta name="theme-color" content="#0c0e10">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Kairos">
+<meta property="og:title" content="Démo interactive · Kairos">
+<meta property="og:description" content="Démo Kairos : déclenchez un aléa (absence, non-conformité, kit en retard) et regardez le planning d&#x27;une ligne d&#x27;assemblage se recalculer dans votre navigateur. Données fictives.">
+<meta property="og:url" content="https://kairos.elliotpostel.com/demo/">
+<meta property="og:image" content="https://kairos.elliotpostel.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/demo.css">
+<script src="/assets/js/demo-engine.js" defer></script>
+<script src="/assets/js/demo-app.js" defer></script>
+</head>
+<body>
+<div class="app" id="app">
+<main id="contenu">
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Kairos, retour au site">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="7" fill="var(--ink)"/><rect x="6" y="8" width="9" height="3.2" rx="1.2" fill="var(--of1)"/><rect x="10" y="13.4" width="12" height="3.2" rx="1.2" fill="var(--of3)"/><rect x="15" y="18.8" width="9" height="3.2" rx="1.2" fill="var(--of4)"/><path d="M8 6v18" stroke="var(--bg)" stroke-width="1.2" stroke-dasharray="2 2"/></svg>
+      <div><span class="brand-name">Kairos</span><span class="brand-tag">Planification prédictive dynamique · démo interactive</span></div>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="t-plan" aria-selected="true" aria-controls="tab-plan">Planning</button>
+      <button role="tab" id="t-data" aria-selected="false" aria-controls="tab-data">Données</button>
+      <button role="tab" id="t-arch" aria-selected="false" aria-controls="tab-arch">Architecture</button>
+    </nav>
+    <div class="clock" aria-label="Horloge de la démo">
+      <span class="clock-lbl">Maintenant</span>
+      <output id="nowOut" class="mono">J2 · 10:00</output>
+      <button class="btn" id="adv1" data-adv="4">+1 h</button>
+      <button class="btn" id="adv4" data-adv="16">+4 h</button>
+      <button class="btn" id="advD" data-adv="64">+1 jour</button>
+    </div>
+  </header>
+  <div class="notice">
+    <span><i class="dot"></i>Données 100 % fictives : 8 OF, 5 postes, 12 opérateurs, 160 opérations</span>
+    <span><i class="dot"></i>Horizon 10 jours ouvrés, 2 équipes (6 h–14 h, 14 h–22 h), pas de 15 min</span>
+    <span><i class="dot"></i>Moteur exécuté dans votre navigateur</span>
+  </div>
+
+  <section id="tab-plan" role="tabpanel" aria-labelledby="t-plan">
+    <div class="scenario" id="scenario" hidden></div>
+    <div class="kpis" id="kpis" aria-live="polite"></div>
+    <div class="main">
+      <div class="board">
+        <div class="board-head">
+          <h2 id="boardTitle">Planning de la ligne</h2>
+          <div class="seg" role="group" aria-label="Vue">
+            <button id="v-poste" aria-pressed="true">Par poste</button>
+            <button id="v-op" aria-pressed="false">Par opérateur</button>
+          </div>
+          <div class="seg" role="group" aria-label="Zoom">
+            <button id="z-10" aria-pressed="true">10 jours</button>
+            <button id="z-5" aria-pressed="false">5 jours</button>
+          </div>
+          <label class="tog"><input type="checkbox" id="c-chain"> Chaîne critique</label>
+          <label class="tog"><input type="checkbox" id="c-ghost" checked> Plan précédent</label>
+        </div>
+        <div class="gantt-wrap" id="ganttWrap"><svg id="gantt" role="img" aria-label="Diagramme de Gantt du planning"></svg></div>
+        <div class="legend" id="legend"></div>
+        <div class="check" id="check"></div>
+        <h3 class="sub-h">Ordres de fabrication</h3>
+        <div class="table-wrap"><table class="tbl" id="ofTable"></table></div>
+      </div>
+      <aside class="rail">
+        <section class="card" id="detail" aria-live="polite"></section>
+        <section class="card c-trig">
+          <h3>Déclencher un aléa</h3>
+          <p class="card-sub" id="trigSub">Le planning est recalculé depuis « maintenant » ; ce qui a démarré reste figé.</p>
+          <div class="trig">
+            <button id="tr-nc"><span class="t-code">T·01 · NC</span><span class="t-name">OP bloquée</span><span class="t-sub">non-conformité, levée dans 4 h</span></button>
+            <button id="tr-abs"><span class="t-code">T·02 · RH</span><span class="t-name">Absence</span><span class="t-sub">opérateur absent 2 jours</span></button>
+            <button id="tr-kit"><span class="t-code">T·03 · LOG</span><span class="t-name">Kit en retard</span><span class="t-sub">pièces du prochain poste, +4 h</span></button>
+            <button id="tr-drift"><span class="t-code">T·04 · MES</span><span class="t-name">Dérive de temps</span><span class="t-sub">OP en cours au-delà du P80</span></button>
+          </div>
+          <div class="trig-row">
+            <button class="btn" id="whatif">Scénario : + 1 intérimaire</button>
+            <button class="btn" id="reset">Réinitialiser</button>
+          </div>
+          <p class="hint">Sélectionnez une OP dans le Gantt pour cibler l'aléa sur elle.</p>
+        </section>
+        <section class="card c-log">
+          <h3>Journal des calculs</h3>
+          <p class="card-sub">Chaque événement déclenche une replanification.</p>
+          <ol id="log"></ol>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tab-data" role="tabpanel" aria-labelledby="t-data" hidden>
+    <div class="panel">
+      <h2>Présence et capacité</h2>
+      <p class="panel-sub">Cliquez une case pour changer le statut d'un opérateur (présent, absent, congé, formation, prêt à une autre ligne), puis recalculez. Les jours passés sont figés.</p>
+      <p class="team-risk" id="teamRisk" aria-live="polite"></p>
+      <div class="table-wrap"><table class="tbl pres" id="presTable"></table></div>
+      <div class="pend" id="pend"></div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <h2>Matrice de compétences</h2>
+        <p class="panel-sub">Niveau 1 : en formation (durée × 1,30) · niveau 2 : confirmé (× 1,00) · niveau 3 : expert (× 0,85). Le contrôle final exige le niveau 2.</p>
+        <div class="table-wrap"><table class="tbl" id="skillTable"></table></div>
+      </div>
+      <div class="panel">
+        <h2>Gamme type (20 opérations par OF)</h2>
+        <p class="panel-sub">Durées standard avant prédiction. Liens : FS fin → début, SS début → début avec décalage, FF fin → fin.</p>
+        <div class="table-wrap"><table class="tbl" id="gammeTable"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-arch" role="tabpanel" aria-labelledby="t-arch" hidden>
+    <div class="panel arch">
+      <div class="arch-fig" id="archFig"></div>
+      <div>
+        <h3>Flux de bout en bout</h3>
+        <ol>
+          <li>Extraction planifiée : ERP (API OData standard), MES, plateforme data en option.</li>
+          <li>Données brutes en staging, puis upsert idempotent vers les tables propres.</li>
+          <li>Saisie des présences et compétences via l'API.</li>
+          <li>Le Gantt demande un calcul.</li>
+          <li>L'API dépose la tâche dans la file et répond aussitôt.</li>
+          <li>Le worker lit l'état consolidé en base.</li>
+          <li>Le solveur résout et écrit le planning, avec les durées prédites.</li>
+          <li>Le worker notifie l'API.</li>
+          <li>Push WebSocket : le Gantt se met à jour.</li>
+        </ol>
+        <h3>Cette démo et la version cible</h3>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>Brique</th><th>Dans cette démo</th><th>Version cible</th></tr></thead>
+          <tbody>
+            <tr><td>Solveur</td><td>Génération de planning en parallèle + 120 à 160 passes aléatoires, dans le navigateur</td><td>OR-Tools CP-SAT en tâche de fond</td></tr>
+            <tr><td>Durées prédites</td><td>Coefficients par niveau de compétence</td><td>Modèle LightGBM entraîné sur l'historique</td></tr>
+            <tr><td>Explications</td><td>Règles sur la contrainte liante</td><td>Assistant LLM, lecture seule</td></tr>
+            <tr><td>Données</td><td>Jeu fictif intégré à la page</td><td>ERP, MES et présences via PostgreSQL</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+  <footer class="foot">
+    <span>Kairos · projet de conception et démo par Elliot Postel · <a href="/">retour au site</a></span>
+    <span>Toutes les données sont fictives ; aucune entreprise ni aucun produit réel n'est représenté.</span>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+</body>
+</html>

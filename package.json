@@ -1,0 +1,12 @@
+{
+  "name": "kairos-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site portfolio Kairos : planification prédictive dynamique (site statique, sans dépendance).",
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "check:strict": "node tools/check.mjs --strict",
+    "dev": "python3 -m http.server 8080 --directory site"
+  },
+  "engines": { "node": ">=18" }
+}
