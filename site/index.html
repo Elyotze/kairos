@@ -35,6 +35,7 @@
 <nav aria-label="Navigation principale" style="max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <a href="#accueil" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 500; font-size: 17px; letter-spacing: -0.01em"><span style="width: 18px; height: 18px; border: 1.5px solid #EDEDEC; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center"><span style="width: 6px; height: 6px; background: #EDEDEC; border-radius: 1px; display: block"></span></span>Kairos</a>
 <div class="kx-navlinks" style="display: flex; gap: 24px; font-size: 14px">
+<a href="#systeme" style="text-decoration: none; color: #9A9A97">Système</a>
 <a href="#planning" style="text-decoration: none; color: #9A9A97">Planning</a>
 <a href="#regles" style="text-decoration: none; color: #9A9A97">Règles</a>
 <a href="#architecture" style="text-decoration: none; color: #9A9A97">Architecture</a>
@@ -49,55 +50,107 @@
 </header>
 <main id="contenu">
 
-<section id="accueil" style="padding: 104px 24px 96px; background-image: radial-gradient(#1A1A1D 1px, transparent 1px); background-size: 24px 24px">
-<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 64px">
-<div class="a-rise" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; max-width: 820px">
-<div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; color: #8A8A87">KAIROS · PLANIFICATION PRÉDICTIVE DYNAMIQUE</div>
-<h1 style="margin: 0; font-size: clamp(38px, 5vw, 66px); line-height: 1.05; font-weight: 500; letter-spacing: -0.035em">Le planning qui se recalcule à chaque aléa.</h1>
-<p style="margin: 0; max-width: 640px; font-size: 18px; color: #9A9A97">L'ERP alimente un hub de données unique. Le solveur y écrit le planning, l'IA y dépose ses prédictions, l'interface l'affiche en direct et un agent l'explique.</p>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
-<a href="#demo" style="text-decoration: none; background: #EDEDEC; color: #0A0A0B; font-weight: 500; padding: 12px 22px; min-height: 46px; display: inline-flex; align-items: center; border-radius: 999px">Voir la démo</a>
-<a href="#architecture" style="text-decoration: none; padding: 12px 22px; min-height: 46px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px; color: #EDEDEC">Comprendre le système</a>
+<section id="accueil" class="kx-hero" aria-labelledby="kx-h1">
+<canvas id="kx-hero-bg" class="kx-hero-bg" aria-hidden="true"></canvas>
+<div class="kx-hero-veil" aria-hidden="true"></div>
+<div class="kx-hero-in">
+<span class="kx-ai a-rise"><span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path class="kx-ai-star" d="M6 0 C6.6 3.6 8.4 5.4 12 6 C8.4 6.6 6.6 8.4 6 12 C5.4 8.4 3.6 6.6 0 6 C3.6 5.4 5.4 3.6 6 0 Z" fill="#EDEDEC"></path></svg>Alimenté par l'IA</span></span>
+<div class="a-rise" style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #8A8A87; animation-delay: .08s">KAIROS · PLANIFICATION PRÉDICTIVE DYNAMIQUE</div>
+<h1 id="kx-h1" class="kx-h1 a-rise" style="animation-delay: .14s">Le planning qui se recalcule à chaque aléa.</h1>
+<p class="a-rise" style="margin: 0; max-width: 680px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #A3A3A0; animation-delay: .22s">Pour la production industrielle complexe : des milliers d'opérations, des compétences rares, des pièces critiques. Kairos réorganise l'atelier en quelques secondes, sans jamais enfreindre une règle.</p>
+<div class="a-rise" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; animation-delay: .3s">
+<a href="#demo" style="text-decoration: none; background: #EDEDEC; color: #0A0A0B; font-weight: 500; padding: 12px 24px; min-height: 48px; display: inline-flex; align-items: center; border-radius: 999px">Voir la démo</a>
+<a href="#systeme" style="text-decoration: none; padding: 12px 24px; min-height: 48px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px; color: #EDEDEC; background: rgba(10,10,11,0.5)">Comprendre le système</a>
 </div>
+<ul class="kx-sectors a-rise" style="animation-delay: .38s" aria-label="Secteurs visés">
+<li>Aéronautique</li><li>Automobile</li><li>Ferroviaire</li><li>Naval</li><li>Énergie</li><li>Défense</li>
+</ul>
 </div>
+<a class="kx-cue" href="#contexte" aria-label="Défiler vers la suite"><span>Défiler</span><span class="kx-cue-line" aria-hidden="true"></span></a>
+</section>
 
-<div class="kx-desk" style="position: relative; width: 1120px; height: 600px; flex: none" role="img" aria-label="Flux Kairos : l'ERP, racine de la donnée, alimente le hub de données. Le solveur lit l'état du hub avec les règles du back-end et y écrit le planning. L'IA prédictive lit l'historique et y écrit ses prédictions. L'interface affiche les données du hub via l'API, et l'agent les explique.">
-<div style="position: absolute; left: 240px; top: 310px; width: 210px; height: 1px; background: #3A3A3F"><span class="a-h" style="position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0"></span></div>
-<svg width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 442px; top: 305px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 670px; top: 310px; width: 200px; height: 1px; background: #3A3A3F"><span class="a-h" style="position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1.3s"></span></div>
-<svg width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 862px; top: 305px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 380px; top: 115px; width: 80px; height: 1px; background: #3A3A3F"></div>
-<svg width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 452px; top: 110px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 535px; top: 160px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-vup" style="position: absolute; left: -3px; top: 100%; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: .5s"></span></div>
-<svg width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 530px; top: 160px" aria-hidden="true"><path d="M0 8 L5 0 L10 8 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 585px; top: 160px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-v" style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1s"></span></div>
-<svg width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 580px; top: 247px" aria-hidden="true"><path d="M0 0 L10 0 L5 8 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 535px; top: 365px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-v" style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: .8s"></span></div>
-<svg width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 530px; top: 452px" aria-hidden="true"><path d="M0 0 L10 0 L5 8 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 585px; top: 365px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-vup" style="position: absolute; left: -3px; top: 100%; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1.6s"></span></div>
-<svg width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 580px; top: 365px" aria-hidden="true"><path d="M0 8 L5 0 L10 8 Z" fill="#5A5A5F"></path></svg>
-<div style="position: absolute; left: 985px; top: 430px; width: 1px; height: 60px; border-left: 1px dashed #3A3A3F"></div>
+<section id="contexte" style="padding: 128px 24px; border-top: 1px solid #1A1A1D">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 760px">
+<div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8A8A87">CONTEXTE · INDUSTRIE COMPLEXE</div>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; font-weight: 500; letter-spacing: -0.03em">La production industrielle complexe ne suit jamais le plan.</h2>
+<p style="margin: 0; font-size: 17px; color: #9A9A97">Des produits à forte valeur, assemblés sur des lignes où chaque opération dépend d'une personne habilitée, d'une pièce disponible et de l'opération précédente. Un seul aléa, et tout le planning glisse.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 32px 24px">
+<div style="flex: 1 1 240px; border-top: 1px solid #2E2E33; padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #8A8A87">FAIBLE CADENCE · FORTE VALEUR</span><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em">Aéronautique et spatial</span><span style="font-size: 15px; color: #9A9A97">Des milliers d'opérations par appareil, des habilitations exigées à chaque étape, une traçabilité qualité sans faille.</span></div>
+<div style="flex: 1 1 240px; border-top: 1px solid #2E2E33; padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #8A8A87">FORTE CADENCE · VARIANTES</span><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em">Automobile</span><span style="font-size: 15px; color: #9A9A97">Des variantes à séquencer, des flux en juste-à-temps, une ligne qui ne doit jamais attendre une pièce.</span></div>
+<div style="flex: 1 1 240px; border-top: 1px solid #2E2E33; padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #8A8A87">PROJET · MULTI-MÉTIERS</span><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em">Ferroviaire et naval</span><span style="font-size: 15px; color: #9A9A97">De grands ensembles assemblés sur des mois, des métiers qui se succèdent, des dépendances en cascade.</span></div>
+<div style="flex: 1 1 240px; border-top: 1px solid #2E2E33; padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #8A8A87">CRITIQUE · RÉGLEMENTÉ</span><span style="font-size: 20px; font-weight: 500; letter-spacing: -0.01em">Énergie et défense</span><span style="font-size: 15px; color: #9A9A97">Des équipements critiques, des exigences réglementaires, des ressources rares et qualifiées.</span></div>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8A8A87">Cas de référence : une ligne d'assemblage final à faible cadence. Les mêmes briques s'adaptent aux autres secteurs : seules les règles et les données changent.</p>
+</div>
+</section>
 
-<div style="position: absolute; left: 245px; top: 282px; width: 200px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">pipeline · lecture seule</div>
-<div style="position: absolute; left: 670px; top: 282px; width: 200px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">API · temps réel</div>
-<div style="position: absolute; left: 380px; top: 88px; width: 80px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">contraintes</div>
-<div style="position: absolute; left: 405px; top: 199px; width: 120px; text-align: right; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">lit l'état</div>
-<div style="position: absolute; left: 597px; top: 199px; width: 140px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">écrit le planning</div>
-<div style="position: absolute; left: 405px; top: 404px; width: 120px; text-align: right; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">historique</div>
-<div style="position: absolute; left: 597px; top: 404px; width: 140px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">prédictions</div>
-<div style="position: absolute; left: 997px; top: 452px; width: 90px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">explique</div>
+<section id="systeme" style="padding: 128px 24px 112px; border-top: 1px solid #1A1A1D">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; max-width: 760px">
+<div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8A8A87">LE SYSTÈME EN UN COUP D'ŒIL</div>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; font-weight: 500; letter-spacing: -0.03em">Trois sources, un cœur de calcul, l'IA tout autour.</h2>
+<p style="margin: 0; font-size: 17px; color: #9A9A97">La vue d'ensemble d'abord. Faites défiler : chaque brique descend prendre sa place dans l'architecture réelle.</p>
+</div>
+<div id="kx-simple" class="kx-simple" role="img" aria-label="Vue simplifiée : trois sources, la capacité, le contexte de production et l'optimisation, alimentent un cœur qui calcule le planning ; l'IA entoure l'ensemble.">
+<svg class="kx-simple-svg" viewBox="0 0 600 600" aria-hidden="true">
+<defs><radialGradient id="kxHalo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#EDEDEC" stop-opacity="0.07"></stop><stop offset="70%" stop-color="#EDEDEC" stop-opacity="0.015"></stop><stop offset="100%" stop-color="#EDEDEC" stop-opacity="0"></stop></radialGradient></defs>
+<circle cx="300" cy="300" r="282" fill="url(#kxHalo)"></circle>
+<circle cx="300" cy="300" r="270" fill="none" stroke="#3A3A3F" stroke-width="1" stroke-dasharray="2 7"></circle>
+<g class="a-orbit"><circle cx="300" cy="30" r="3.5" fill="#EDEDEC"></circle></g>
+<g class="a-orbit" style="animation-duration: 38s; animation-direction: reverse"><circle cx="570" cy="300" r="2.5" fill="#8A8A87"></circle></g>
+<line x1="165" y1="185" x2="300" y2="300" stroke="#3A3A3F"></line>
+<line x1="435" y1="185" x2="300" y2="300" stroke="#3A3A3F"></line>
+<line x1="300" y1="470" x2="300" y2="300" stroke="#3A3A3F"></line>
+<line class="a-flow" x1="165" y1="185" x2="300" y2="300" stroke="#EDEDEC" stroke-width="1.5" stroke-dasharray="2 14" stroke-linecap="round"></line>
+<line class="a-flow" x1="435" y1="185" x2="300" y2="300" stroke="#EDEDEC" stroke-width="1.5" stroke-dasharray="2 14" stroke-linecap="round" style="animation-delay: -.6s"></line>
+<line class="a-flow" x1="300" y1="470" x2="300" y2="300" stroke="#EDEDEC" stroke-width="1.5" stroke-dasharray="2 14" stroke-linecap="round" style="animation-delay: -1.2s"></line>
+</svg>
+<span class="kx-ia-tag" data-k="ia" style="left: 50%; top: 5%">IA</span>
+<div class="kx-sn" data-k="cap" style="left: 27.5%; top: 30.8%"><span class="kx-sn-n">1</span><b>Capacité</b><span>présence · habilitations · temps réels</span></div>
+<div class="kx-sn" data-k="ctx" style="left: 72.5%; top: 30.8%"><span class="kx-sn-n">2</span><b>Contexte de production</b><span>ordres · gammes · qualité · pièces</span></div>
+<div class="kx-sn" data-k="opt" style="left: 50%; top: 78.3%"><span class="kx-sn-n">3</span><b>Optimisation</b><span>historique · scénarios · apprentissage</span></div>
+<div class="kx-sn kx-core" data-k="core" style="left: 50%; top: 50%"><span class="a-ring" style="position: absolute; inset: -1px; border: 1px solid #EDEDEC; border-radius: 50%; display: block; opacity: 0"></span><b>Planning</b><span>optimal, en direct</span></div>
+</div>
+<div class="kx-desk" style="display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #8A8A87" aria-hidden="true"><span>LE DÉTAIL</span><span class="kx-drop"></span></div>
+<div class="kx-desk" id="kx-detail" style="position: relative; width: 1120px; height: 600px; flex: none; margin: 0 auto" role="img" aria-label="Flux Kairos : l'ERP, racine de la donnée, alimente le hub de données. Le solveur lit l'état du hub avec les règles du back-end et y écrit le planning. L'IA prédictive lit l'historique et y écrit ses prédictions. L'interface affiche les données du hub via l'API, et l'agent les explique.">
+<div class="kx-asm-fade" style="position: absolute; left: 240px; top: 310px; width: 210px; height: 1px; background: #3A3A3F"><span class="a-h" style="position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0"></span></div>
+<svg class="kx-asm-fade" width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 442px; top: 305px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 670px; top: 310px; width: 200px; height: 1px; background: #3A3A3F"><span class="a-h" style="position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1.3s"></span></div>
+<svg class="kx-asm-fade" width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 862px; top: 305px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 380px; top: 115px; width: 80px; height: 1px; background: #3A3A3F"></div>
+<svg class="kx-asm-fade" width="8" height="10" viewBox="0 0 8 10" style="position: absolute; left: 452px; top: 110px" aria-hidden="true"><path d="M0 0 L8 5 L0 10 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 535px; top: 160px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-vup" style="position: absolute; left: -3px; top: 100%; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: .5s"></span></div>
+<svg class="kx-asm-fade" width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 530px; top: 160px" aria-hidden="true"><path d="M0 8 L5 0 L10 8 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 585px; top: 160px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-v" style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1s"></span></div>
+<svg class="kx-asm-fade" width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 580px; top: 247px" aria-hidden="true"><path d="M0 0 L10 0 L5 8 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 535px; top: 365px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-v" style="position: absolute; left: -3px; top: 0; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: .8s"></span></div>
+<svg class="kx-asm-fade" width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 530px; top: 452px" aria-hidden="true"><path d="M0 0 L10 0 L5 8 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 585px; top: 365px; width: 1px; height: 95px; background: #3A3A3F"><span class="a-vup" style="position: absolute; left: -3px; top: 100%; width: 7px; height: 7px; border-radius: 50%; background: #EDEDEC; display: block; opacity: 0; animation-delay: 1.6s"></span></div>
+<svg class="kx-asm-fade" width="10" height="8" viewBox="0 0 10 8" style="position: absolute; left: 580px; top: 365px" aria-hidden="true"><path d="M0 8 L5 0 L10 8 Z" fill="#5A5A5F"></path></svg>
+<div class="kx-asm-fade" style="position: absolute; left: 985px; top: 430px; width: 1px; height: 60px; border-left: 1px dashed #3A3A3F"></div>
 
-<div style="position: absolute; left: 140px; top: 70px; width: 240px; height: 90px; box-sizing: border-box; border: 1px dashed #3A3A3F; border-radius: 14px; background: #0E0E10; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 15px; font-weight: 500">Règles · back-end</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">présence · stock · technique</span></div>
-<div style="position: absolute; left: 460px; top: 70px; width: 200px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span style="font-size: 16px; font-weight: 500">Solveur</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">CP-SAT · moins de 30 s</span></div>
-<div style="position: absolute; left: 30px; top: 265px; width: 210px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 16px; font-weight: 500">ERP</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">racine de la donnée</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">fiable et directe</span></div>
-<div style="position: absolute; left: 30px; top: 366px; width: 210px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #6E6E6B">+ MES · entrepôt · présence</div>
-<div style="position: absolute; left: 450px; top: 255px; width: 220px; height: 110px; box-sizing: border-box; border: 1px solid #EDEDEC; border-radius: 18px; background: #141416; padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span class="a-ring" style="position: absolute; inset: -1px; border: 1px solid #EDEDEC; border-radius: 18px; display: block; opacity: 0"></span><span style="font-size: 18px; font-weight: 500">Hub de données</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #9A9A97">PostgreSQL · source de vérité</span></div>
-<div style="position: absolute; left: 460px; top: 460px; width: 200px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span style="font-size: 16px; font-weight: 500">IA prédictive</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">durées · risques · scénarios</span></div>
+<div class="kx-asm-fade" style="position: absolute; left: 245px; top: 282px; width: 200px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">pipeline · lecture seule</div>
+<div class="kx-asm-fade" style="position: absolute; left: 670px; top: 282px; width: 200px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">API · temps réel</div>
+<div class="kx-asm-fade" style="position: absolute; left: 380px; top: 88px; width: 80px; text-align: center; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">contraintes</div>
+<div class="kx-asm-fade" style="position: absolute; left: 405px; top: 199px; width: 120px; text-align: right; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">lit l'état</div>
+<div class="kx-asm-fade" style="position: absolute; left: 597px; top: 199px; width: 140px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">écrit le planning</div>
+<div class="kx-asm-fade" style="position: absolute; left: 405px; top: 404px; width: 120px; text-align: right; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">historique</div>
+<div class="kx-asm-fade" style="position: absolute; left: 597px; top: 404px; width: 140px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">prédictions</div>
+<div class="kx-asm-fade" style="position: absolute; left: 997px; top: 452px; width: 90px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">explique</div>
 
-<div style="position: absolute; left: 870px; top: 190px; width: 230px; height: 240px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 16px; background: #111113; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+<div data-from="cap" style="position: absolute; left: 140px; top: 70px; width: 240px; height: 90px; box-sizing: border-box; border: 1px dashed #3A3A3F; border-radius: 14px; background: #0E0E10; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 15px; font-weight: 500">Règles · back-end</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">présence · stock · technique</span></div>
+<div data-from="opt" style="position: absolute; left: 460px; top: 70px; width: 200px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span style="font-size: 16px; font-weight: 500">Solveur</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">CP-SAT · quelques secondes</span></div>
+<div data-from="ctx" style="position: absolute; left: 30px; top: 265px; width: 210px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 16px; font-weight: 500">ERP</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">racine de la donnée</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">fiable et directe</span></div>
+<div class="kx-asm-fade" style="position: absolute; left: 30px; top: 366px; width: 210px; font-family: 'Geist Mono', monospace; font-size: 11px; color: #6E6E6B">+ MES · entrepôt · présence</div>
+<div data-from="core" style="position: absolute; left: 450px; top: 255px; width: 220px; height: 110px; box-sizing: border-box; border: 1px solid #EDEDEC; border-radius: 18px; background: #141416; padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span class="a-ring" style="position: absolute; inset: -1px; border: 1px solid #EDEDEC; border-radius: 18px; display: block; opacity: 0"></span><span style="font-size: 18px; font-weight: 500">Hub de données</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #9A9A97">PostgreSQL · source de vérité</span></div>
+<div data-from="ia" style="position: absolute; left: 460px; top: 460px; width: 200px; height: 90px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; text-align: center"><span style="font-size: 16px; font-weight: 500">IA prédictive</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">durées · risques · scénarios</span></div>
+
+<div data-asm="in" style="position: absolute; left: 870px; top: 190px; width: 230px; height: 240px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 16px; background: #111113; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 500">Interface</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">Gantt · pilotage</span></div>
 <div style="position: relative; flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 4px 0">
-<div style="position: absolute; left: 34%; top: -2px; bottom: -2px; width: 1px; background: #5A5A5F"></div>
+<div class="kx-asm-fade" style="position: absolute; left: 34%; top: -2px; bottom: -2px; width: 1px; background: #5A5A5F"></div>
 <div style="position: relative; height: 9px"><span class="a-g" style="position: absolute; left: 0%; width: 22%; height: 9px; border-radius: 5px; background: #EDEDEC"></span><span class="a-g" style="position: absolute; left: 26%; width: 18%; height: 9px; border-radius: 5px; background: #8A8A87; animation-delay: .15s"></span><span class="a-g" style="position: absolute; left: 50%; width: 24%; height: 9px; border-radius: 5px; background: #4A4A4F; animation-delay: .3s"></span></div>
 <div style="position: relative; height: 9px"><span class="a-g" style="position: absolute; left: 12%; width: 20%; height: 9px; border-radius: 5px; background: #8A8A87; animation-delay: .1s"></span><span class="a-g" style="position: absolute; left: 36%; width: 22%; height: 9px; border-radius: 5px; background: #EDEDEC; animation-delay: .25s"></span><span class="a-g" style="position: absolute; left: 62%; width: 18%; height: 9px; border-radius: 5px; background: #4A4A4F; animation-delay: .4s"></span></div>
 <div style="position: relative; height: 9px"><span class="a-g" style="position: absolute; left: 20%; width: 14%; height: 9px; border-radius: 5px; background: #EDEDEC; animation-delay: .2s"></span><span class="a-al" style="position: absolute; left: 36%; width: 12%; height: 9px; border-radius: 5px; background: #E5484D"></span><span class="a-gs" style="--dx: 10%; position: absolute; left: 50%; width: 20%; height: 9px; border-radius: 5px; background: #8A8A87; animation-delay: .35s"></span></div>
@@ -106,7 +159,7 @@
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border-top: 1px solid #1F1F22; padding-top: 10px"><div style="display: flex; flex-direction: column"><span style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #8A8A87">À L'HEURE</span><span style="font-size: 16px">7 / 8</span></div><div style="display: flex; flex-direction: column"><span style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #8A8A87">CHARGE</span><span style="font-size: 16px">78 %</span></div></div>
 </div>
 
-<div style="position: absolute; left: 870px; top: 490px; width: 230px; height: 80px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px"><span style="font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px">Agent<span style="display: inline-flex; gap: 3px" aria-hidden="true"><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block"></span><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block; animation-delay: .2s"></span><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block; animation-delay: .4s"></span></span></span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">« Pourquoi ce retard ? »</span></div>
+<div data-asm="in" style="position: absolute; left: 870px; top: 490px; width: 230px; height: 80px; box-sizing: border-box; border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px"><span style="font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px">Agent<span style="display: inline-flex; gap: 3px" aria-hidden="true"><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block"></span><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block; animation-delay: .2s"></span><span class="a-dots" style="width: 4px; height: 4px; border-radius: 50%; background: #EDEDEC; display: block; animation-delay: .4s"></span></span></span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">« Pourquoi ce retard ? »</span></div>
 </div>
 
 <div class="kx-mob" style="width: 100%; max-width: 440px; flex-direction: column; align-items: stretch; gap: 0" role="img" aria-label="Flux Kairos : ERP, hub de données, solveur et IA autour du hub, interface et agent.">
@@ -116,12 +169,11 @@
 <div style="width: 1px; height: 26px; background: #3A3A3F; margin: 0 auto"></div>
 <div style="border: 1px solid #2E2E33; border-radius: 14px; background: #111113; padding: 14px 16px; display: flex; flex-direction: column"><b style="font-weight: 500">Interface</b><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #8A8A87">Gantt et pilotage, expliqués par l'agent</span></div>
 </div>
-
-<div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 24px; border-top: 1px solid #1A1A1D; padding-top: 32px">
-<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 30px; font-weight: 400; letter-spacing: -0.02em">0,2 s</span><span style="font-size: 14px; color: #8A8A87">pour replanifier 160 opérations</span></div>
-<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 30px; font-weight: 400; letter-spacing: -0.02em">0 violation</span><span style="font-size: 14px; color: #8A8A87">vérifiée après chaque calcul</span></div>
-<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 30px; font-weight: 400; letter-spacing: -0.02em">0 licence</span><span style="font-size: 14px; color: #8A8A87">socle open source, hors IA</span></div>
-<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 30px; font-weight: 400; letter-spacing: -0.02em">7 mois</span><span style="font-size: 14px; color: #8A8A87">du terrain au code de référence</span></div>
+<div class="kx-stats">
+<div><span class="kx-stat-v">Quelques secondes</span><span class="kx-stat-l">pour replanifier des milliers d'opérations simultanées</span></div>
+<div><span class="kx-stat-v">0 violation</span><span class="kx-stat-l">pour tenir les échéances face à la réalité de l'industrie</span></div>
+<div><span class="kx-stat-v">0 licence</span><span class="kx-stat-l">socle open source, hors IA</span></div>
+<div><span class="kx-stat-v">7 mois</span><span class="kx-stat-l">du terrain au code de référence</span></div>
 </div>
 </div>
 </section>
@@ -203,6 +255,17 @@
 <span class="a-ck" style="display: flex; gap: 10px; color: #EDEDEC"><span style="font-family: 'Geist Mono', monospace">3</span>Toutes les contraintes vérifiées</span>
 </div>
 </div>
+<details style="border-top: 1px solid #1F1F22; border-bottom: 1px solid #1F1F22">
+<summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; min-height: 44px; font-size: 15px; color: #C4C4C1"><span>Plus d'info : toutes les contraintes, reprises à chaque recalcul</span><span class="kx-plus" style="font-size: 22px; line-height: 1; font-weight: 300" aria-hidden="true">+</span></summary>
+<div style="padding: 4px 0 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 22px 40px; font-size: 15px; color: #C4C4C1">
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">Le passé est figé</b><span>Le recalcul part de « maintenant » : ce qui a démarré ou est terminé ne bouge plus, seul l'avenir est réorganisé.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">Toutes les règles, à chaque fois</b><span>Enchaînements fin → début, début → début et fin → fin, capacité des postes et des emplacements, effectifs, compétences et habilitations, présences et congés, pièces et kits, outillage étalonné, non-conformités bloquantes, règles sociales.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">Le moins de changements possible</b><span>Parmi les plannings valides, le solveur garde celui qui déplace le moins d'opérations : l'atelier n'est pas désorganisé pour quelques minutes gagnées.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">Une double vérification</b><span>Un contrôleur indépendant relit chaque planning ligne par ligne. S'il reste une seule violation, le planning n'est pas publié.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">Une raison pour chaque décalage</b><span>Pour chaque opération, la contrainte qui la retient est affichée : pièce, personne, poste ou opération précédente.</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><b style="font-weight: 500; color: #EDEDEC">À l'échelle</b><span>0,2 seconde pour les 160 opérations de la démo ; quelques secondes pour des milliers d'opérations sur une ligne complète.</span></div>
+</div>
+</details>
 </div>
 </section>
 
@@ -625,24 +688,44 @@ s.c.   Sb ≥ Ea + ℓ (FS)    Sb ≥ Sa + ℓ (SS)    Eb ≥ Ea + ℓ (FF)
 </div>
 </section>
 
-<section id="demo" style="padding: 112px 24px 56px; border-top: 1px solid #1A1A1D">
+<section id="demo" style="padding: 112px 24px 96px; border-top: 1px solid #1A1A1D">
 <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px">
 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 24px; max-width: 760px">
 <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8A8A87">13 · À VOUS DE JOUER</div>
 <h2 style="margin: 0; font-size: clamp(34px, 4.4vw, 58px); line-height: 1.06; font-weight: 500; letter-spacing: -0.035em">Déclenchez un aléa. Regardez le planning se réorganiser.</h2>
 <a href="/demo/" style="text-decoration: none; background: #EDEDEC; color: #0A0A0B; font-weight: 500; padding: 12px 22px; min-height: 46px; display: inline-flex; align-items: center; border-radius: 999px">Ouvrir la démo</a>
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; padding-top: 32px; border-top: 1px solid #1F1F22">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 500">Elliot Postel</span><span style="font-size: 14px; color: #8A8A87">Planification · supply chain · industrie 4.0</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px"><a href="https://www.linkedin.com/in/elliotpostel" rel="me noopener" style="text-decoration: none; padding: 10px 16px; min-height: 44px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px">LinkedIn</a><a href="https://github.com/Elyotze/kairos" rel="me noopener" style="text-decoration: none; padding: 10px 16px; min-height: 44px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px">GitHub</a></div>
-</div>
-<p style="margin: 0; font-size: 12px; color: #8A8A87; max-width: 820px">Projet présenté sous une forme générique : données, chiffres et noms sont fictifs ou génériques ; aucune information confidentielle d'une entreprise n'y figure. Les tableaux de bord et scénarios utilisent des données d'illustration. Réalisé avec l'aide d'outils d'IA générative ; conception, choix et validation par l'auteur.</p>
-<p style="margin: 0; font-size: 12px; color: #8A8A87"><a href="/mentions-legales/" style="color: #9A9A97">Mentions légales</a> · Aucun cookie, aucun traceur, aucune donnée collectée.</p>
 </div>
 </section>
 
-</main>
+<section id="ecosysteme" style="padding: 104px 0 112px; border-top: 1px solid #1A1A1D; overflow: hidden">
+<div style="max-width: 1228px; margin: 0 auto 48px; padding: 0 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 18px 48px">
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 720px">
+<div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #8A8A87">ÉCOSYSTÈME</div>
+<h2 style="margin: 0; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; font-weight: 500; letter-spacing: -0.03em">Les technologies du projet, et les systèmes auxquels il se branche.</h2>
 </div>
+<div style="display: flex; flex-direction: column; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #8A8A87"><span>→ technologies utilisées</span><span>← sources connectables</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="kx-marquee" role="group" aria-label="Technologies utilisées"><div class="kx-track"><ul class="kx-set"><li><b>Python</b><span>langage</span></li><li><b>pandas</b><span>données</span></li><li><b>PostgreSQL</b><span>hub de données</span></li><li><b>OR-Tools CP-SAT</b><span>solveur</span></li><li><b>LightGBM</b><span>prédiction</span></li><li><b>Monte-Carlo</b><span>scénarios</span></li><li><b>LLM interne · RAG</b><span>agent</span></li><li><b>FastAPI</b><span>API</span></li><li><b>WebSocket</b><span>temps réel</span></li><li><b>React</b><span>interface</span></li><li><b>TypeScript</b><span>interface</span></li><li><b>Redis</b><span>file de tâches</span></li><li><b>Celery</b><span>calcul en tâche de fond</span></li><li><b>Airflow</b><span>pipeline</span></li><li><b>OData</b><span>connexion ERP</span></li><li><b>Docker</b><span>conteneurs</span></li><li><b>CI/CD</b><span>livraison</span></li><li><b>OIDC · SSO</b><span>identité</span></li></ul><ul class="kx-set" aria-hidden="true"><li><b>Python</b><span>langage</span></li><li><b>pandas</b><span>données</span></li><li><b>PostgreSQL</b><span>hub de données</span></li><li><b>OR-Tools CP-SAT</b><span>solveur</span></li><li><b>LightGBM</b><span>prédiction</span></li><li><b>Monte-Carlo</b><span>scénarios</span></li><li><b>LLM interne · RAG</b><span>agent</span></li><li><b>FastAPI</b><span>API</span></li><li><b>WebSocket</b><span>temps réel</span></li><li><b>React</b><span>interface</span></li><li><b>TypeScript</b><span>interface</span></li><li><b>Redis</b><span>file de tâches</span></li><li><b>Celery</b><span>calcul en tâche de fond</span></li><li><b>Airflow</b><span>pipeline</span></li><li><b>OData</b><span>connexion ERP</span></li><li><b>Docker</b><span>conteneurs</span></li><li><b>CI/CD</b><span>livraison</span></li><li><b>OIDC · SSO</b><span>identité</span></li></ul></div></div>
+<div class="kx-marquee kx-rev" role="group" aria-label="Sources connectables"><div class="kx-track"><ul class="kx-set"><li><b>SAP S/4HANA</b><span>ERP</span></li><li><b>SAP ECC</b><span>ERP</span></li><li><b>Oracle</b><span>ERP</span></li><li><b>Microsoft Dynamics 365</b><span>ERP</span></li><li><b>Infor</b><span>ERP</span></li><li><b>Odoo</b><span>ERP</span></li><li><b>Salesforce</b><span>CRM · commandes</span></li><li><b>Siemens Opcenter</b><span>MES</span></li><li><b>DELMIA</b><span>MES</span></li><li><b>PTC Windchill</b><span>PLM</span></li><li><b>UKG</b><span>temps et présence</span></li><li><b>OPC UA</b><span>machines</span></li><li><b>Excel · CSV</b><span>fichiers</span></li><li><b>API REST</b><span>sur mesure</span></li></ul><ul class="kx-set" aria-hidden="true"><li><b>SAP S/4HANA</b><span>ERP</span></li><li><b>SAP ECC</b><span>ERP</span></li><li><b>Oracle</b><span>ERP</span></li><li><b>Microsoft Dynamics 365</b><span>ERP</span></li><li><b>Infor</b><span>ERP</span></li><li><b>Odoo</b><span>ERP</span></li><li><b>Salesforce</b><span>CRM · commandes</span></li><li><b>Siemens Opcenter</b><span>MES</span></li><li><b>DELMIA</b><span>MES</span></li><li><b>PTC Windchill</b><span>PLM</span></li><li><b>UKG</b><span>temps et présence</span></li><li><b>OPC UA</b><span>machines</span></li><li><b>Excel · CSV</b><span>fichiers</span></li><li><b>API REST</b><span>sur mesure</span></li></ul></div></div>
+</div>
+<p style="max-width: 1228px; margin: 32px auto 0; padding: 0 24px; font-size: 12px; color: #6E6E6B">Sources connectables par API standard ou par export. Noms cités à titre indicatif, sans partenariat.</p>
+</section>
+
+</main>
+<footer style="padding: 48px 24px 56px; border-top: 1px solid #1A1A1D">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 500">Elliot Postel</span><span style="font-size: 14px; color: #8A8A87">Planification · supply chain · industrie 4.0</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px"><a href="https://www.linkedin.com/in/elliotpostel" rel="me noopener" style="text-decoration: none; padding: 10px 16px; min-height: 44px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px">LinkedIn</a><a href="https://github.com/Elyotze/kairos" rel="me noopener" style="text-decoration: none; padding: 10px 16px; min-height: 44px; display: inline-flex; align-items: center; border: 1px solid #2E2E33; border-radius: 999px">GitHub</a></div>
+</div>
+<p style="margin: 0; font-size: 12px; color: #8A8A87; max-width: 820px">Projet présenté sous une forme générique : données, chiffres et noms sont fictifs ou génériques ; aucune information confidentielle d'une entreprise n'y figure. Les tableaux de bord et scénarios utilisent des données d'illustration. Réalisé avec l'aide d'outils d'IA générative.</p>
+<p style="margin: 0; font-size: 12px; color: #8A8A87"><a href="/mentions-legales/" style="color: #9A9A97">Mentions légales</a> · Aucun cookie, aucun traceur, aucune donnée collectée.</p>
+</div>
+</footer>
+</div>
+<script src="/assets/js/hero.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

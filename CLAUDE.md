@@ -17,6 +17,7 @@ Site statique de présentation d'un projet de planification prédictive dynamiqu
 - **Style.** Fond `#0A0A0B`, textes `#EDEDEC`, `#9A9A97` et `#8A8A87`, bordures `#1F1F22` et `#2E2E33`. L'accent `#E5484D` est réservé aux aléas et aux points saillants. Polices Geist et Geist Mono.
 - **Animations.** Elles passent par les classes `a-*` de `site/assets/css/site.css`, actives seulement sous `.kx-on`. Le bouton `[data-motion-toggle]` (`assets/js/common.js`) bascule `.kx-on` / `.kx-off`, et `prefers-reduced-motion` est respecté.
 - **Accessibilité.** Cibles tactiles d'au moins 44 px, `:focus-visible` visible, `aria-label` sur les schémas, contrastes AA. Pas de défilement horizontal à 390 px de large.
+- **Accueil.** `assets/js/hero.js` dessine le fond animé (canvas, Gantt sobre) ; il s'arrête hors écran et quand les animations sont coupées. Dans `assets/js/main.js`, les briques du schéma détaillé (`#kx-detail [data-from]`) partent des nœuds du schéma simplifié (`#kx-simple [data-k]`) au défilement, et les blocs de section apparaissent via `.kx-rv`.
 - **Simulateur.** `site/impact/index.html` lie ses valeurs par `data-t` (texte), `data-b` (attributs) et `data-s` (styles), calculées dans `assets/js/impact.js`.
 - **Démo.** `assets/js/demo-engine.js` contient le moteur, sans DOM, et `assets/js/demo-app.js` l'interface. Toutes les données sont fictives. La prévision d'absence reste agrégée par équipe, jamais nominative.
 
