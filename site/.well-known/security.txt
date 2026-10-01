@@ -1,0 +1,5 @@
+# Signaler une faille de sécurité sur ce site (RFC 9116)
+Contact: https://www.linkedin.com/in/elliotpostel
+Expires: 2027-10-01T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://kairos.elliotpostel.com/.well-known/security.txt

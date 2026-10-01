@@ -32,10 +32,10 @@ npm run dev            # ou : python3 -m http.server 8080 --directory site
 
 Ouvre ensuite http://localhost:8080. Les en-têtes de `_headers` ne s'appliquent qu'en ligne.
 
-## 2. Avant la première mise en ligne
+## 2. Avant chaque mise en ligne
 
-1. Remplace les champs `A-COMPLETER` par ton profil LinkedIn, ton e-mail et ton GitHub. Ils se trouvent dans `site/index.html`, `site/mentions-legales/index.html` et `site/.well-known/security.txt`.
-2. Si ton domaine n'est pas `kairos.elliotpostel.com`, remplace-le partout. Il apparaît dans les balises `canonical` et `og:` des pages, ainsi que dans `robots.txt`, `sitemap.xml` et `security.txt`.
+1. Les liens LinkedIn et GitHub sont renseignés ; le bouton e-mail est masqué (à rajouter dans `site/index.html` si besoin).
+2. Le domaine prévu est `kairos.elliotpostel.com`. S'il change, remplace-le partout : balises `canonical` et `og:` des pages, `robots.txt`, `sitemap.xml` et `security.txt`.
 3. Lance `npm run check`. Le script vérifie :
    - les liens et les ancres ;
    - la compatibilité avec la CSP ;

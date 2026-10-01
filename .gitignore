@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+# dépendances et outils locaux
+node_modules/
+.wrangler/
+# liste locale des termes confidentiels : ne jamais publier
+.confidential-terms.txt
